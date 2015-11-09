@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.String?>
+<StackPane id="StackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.9999000000025" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="fi.timotapanainen.tergen.NoiseViewerController">
+  <children>
+    <BorderPane fx:id="borderPane" prefHeight="200.0" prefWidth="200.0">
+      <center>
+        <ScrollPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" />
+      </center>
+      <left>
+        <Accordion>
+          <expandedPane>
+            <TitledPane fx:id="x2" animated="false" text="Presentation">
+              <content>
+                <VBox id="VBox" spacing="10.0">
+                  <children>
+                    <Label text="Heightmap color:">
+                      <font>
+                        <Font size="14.0" fx:id="x3" />
+                      </font>
+                    </Label>
+                    <HBox id="HBox" spacing="5.0">
+                      <children>
+                        <ToggleButton id="colorGrayscale" fx:id="btnGrayscale" alignment="TOP_LEFT" mnemonicParsing="false" text="Grayscale">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="colorGroup" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="btnColor" alignment="TOP_CENTER" mnemonicParsing="false" selected="true" text="Color" toggleGroup="$colorGroup" />
+                      </children>
+                    </HBox>
+                    <!--<Label font="$x3" text="Weight allocation:" />
+                    <TableView fx:id="colorWeightTable" prefHeight="200.0" prefWidth="200.0">
+                      <columns>
+                        <TableColumn prefWidth="75.0" text="Color" />
+                        <TableColumn prefWidth="75.0" text="Weight" />
+                      </columns>
+                    </TableView>
+                    <Label font="$x3" text="Cell shape:" />
+                    <HBox id="HBox" spacing="5.0">
+                      <children>
+                        <ToggleButton fx:id="btnPixel" mnemonicParsing="false" selected="true" text="Pixel">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="shapeGroup" />
+                          </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="btnHexagon" mnemonicParsing="false" text="Hexagon" toggleGroup="$shapeGroup" />
+                      </children>
+                    </HBox>-->
+                    <Label text="Water coverage %:" />
+                    <Slider fx:id="waterCoverage" showTickLabels="true" value="50.0" />
+                  </children>
+                  <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+                </VBox>
+              </content>
+            </TitledPane>
+          </expandedPane>
+          <panes>
+            <TitledPane fx:id="x1" animated="false" text="Noise">
+              <content>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                    <GridPane>
+                      <children>
+                        <Label text="Width:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label text="Height:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="mapWidth" prefWidth="200.0" text="800" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <TextField fx:id="mapHeight" prefWidth="200.0" text="600" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField id="frequency" fx:id="startingFrequency" prefWidth="200.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="persistence" prefWidth="200.0" text="0.5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Starting freq:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label text="Persistence:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label text="Octaves:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <TextField fx:id="octaves" prefWidth="200.0" text="6" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Algorithm:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                        <ComboBox fx:id="algorithmCombo" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                            </FXCollections>
+                          </items>
+                        </ComboBox>
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                      <VBox.margin>
+                        <Insets />
+                      </VBox.margin>
+                    </GridPane>
+                    <Button fx:id="btnGenerate" mnemonicParsing="false" onAction="#generateOctaves" text="Generate octaves">
+                      <VBox.margin>
+                        <Insets top="5.0" />
+                      </VBox.margin>
+                    </Button>
+                    <Label font="$x3" style="&#10;" text="Noise maps:">
+                      <VBox.margin>
+                        <Insets top="20.0" />
+                      </VBox.margin>
+                    </Label>
+                    <ScrollPane id="ScrollPane" hbarPolicy="NEVER" prefViewportHeight="176.0" prefViewportWidth="180.0">
+                      <content>
+                        <ListView fx:id="generatedOctavesView" prefHeight="200.0" prefWidth="200.0" />
+                      </content>
+                      <VBox.margin>
+                        <Insets top="10.0" />
+                      </VBox.margin>
+                    </ScrollPane>
+                  </children>
+                  <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+                </VBox>
+              </content>
+            </TitledPane>
+            <fx:reference source="x2" />
+          </panes>
+        </Accordion>
+      </left>
+    </BorderPane>
+  </children>
+</StackPane>
